@@ -1,0 +1,77 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="inner-block" style="padding: 0 0 80px 0">
+    <!--market updates updates-->
+    <div class="signup-page-main">
+      <div class="signup-main">
+        <div class="signup-head">
+          <h1 style="color: brown">Seller Detail</h1>
+        </div>
+        <div class="signup-block" >
+          <form
+            action="{% url 'edit_details' %}"
+            method={{method}}
+            enctype="multipart/form-data"
+          >
+            {% csrf_token %} {{msg}}
+           
+            <input
+            type="text"
+            name="shop_name"
+            value = "{{seller_details.shop_name}}"
+            placeholder="Shop Name"
+            required=""
+            {{disabled}}
+          />
+          <input
+            type="text"
+            name="name"
+            value = "{{seller_details.name}}"
+            placeholder="Seller Name"
+            required=""
+            {{disabled}}
+          />
+          <input type="text" name="email" disabled placeholder="Email" value = {{seller_details.email}} required="" />
+          <input
+            type="text"
+            name="gst_no"
+            value = "{{seller_details.gst_no}}"
+            placeholder="GST No."
+            required=""
+            {{disabled}}
+          />
+          <input
+            type="text"
+            value = {{seller_details.profile_pic}}
+            placeholder="Profile Pic"
+            required=""
+            disabled
+          />
+          <input type="file" {{disabled}} value={{seller_details.profile_pic}} accept = 'image/*'  name="profile_pic" />
+            <div class="forgot-top-grids">
+              <div class="clearfix"></div>
+            </div>
+            <input type="submit" name="Sign In" value="EDIT" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--inner block end here-->
+  <!--copy rights start here-->
+  <div class="copyrights">
+    <p>
+      © 2016 Go-seller. All Rights Reserved | Design by
+      <a href="{% url 'index' %}" target="_blank">Go-Big Store</a>
+    </p>
+  </div>
+  <!--COPY rights end here-->
+
+
+
+
+
+{% endblock %}

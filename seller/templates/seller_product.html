@@ -1,0 +1,57 @@
+{% extends 'seller_header.html' %} {% load static %} {% block content %}
+<!--inner block start here-->
+<div class="inner-block" style = "min-height: 500px" >
+  <div class="product-block" >
+    <div class="pro-head">
+      <h2>Products</h2>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Desc.</th>
+          <th scope="col">Pic</th>
+          <th scope="col">Price</th>
+          <th scope="col">Stock</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pr in productlist %}
+        <tr>
+          <td style="width: 20%">{{pr.product_name}}</td>
+          <td style="width: 35%">{{pr.desc}}</td>
+          <td style="width: 15%">
+            <img
+              src={{pr.product_pic.url}}
+              style="width: 15%"
+              alt="product_pic"
+            />
+          </td>
+          <td style="width: 10%">{{pr.price}}</td>
+          <td style="width: 10%">{{pr.product_stock}}</td>
+          <td style="width: 10%">
+            <a href="{% url 'edit_product' pr.id %}"
+              ><i class="fa fa-edit text-warning"></i></a
+            >&nbsp;&nbsp;&nbsp;<a href='{% url "delete_product" pr.id %}'
+              ><i class="fa fa-trash text-danger"></i
+            ></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!--inner block end here-->
+<!--copy rights start here-->
+<div class="copyrights">
+	<p>
+		© 2016 Go-seller. All Rights Reserved | Design by
+		<a href="{% url 'index' %}" target="_blank">Go-Big Store</a>
+	</p>
+</div>
+<!--COPY rights end here-->
+{% endblock %}

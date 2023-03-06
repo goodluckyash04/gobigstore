@@ -1,0 +1,74 @@
+{% extends 'seller_header.html' %} {% load static %} {% block content %}
+<!--inner block start here-->
+<div class="inner-block" style="padding: 0 0 80px 0">
+  <!--market updates updates-->
+  <div class="signup-page-main">
+    <div class="signup-main">
+      <div class="signup-head">
+        <h1 style="color: brown">Product Details</h1>
+      </div>
+      <div class="signup-block" style="padding-top: 5px">
+        {% if task == "Add" %}
+        <form
+          action="{% url 'add_product'  %}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+        {% else %}
+        <form
+          action="{% url 'edit_product' product.id  %}"
+          method="post"
+          enctype="multipart/form-data"
+        >
+        {% endif %}
+          {% csrf_token %} {{msg}}
+          <input
+            type="text"
+            name="product_name"
+            value = "{{product.product_name}}"
+            placeholder="Product Name"
+            required=""
+          />
+          <input
+            type="text"
+            name="desc"
+            value = "{{product.desc}}"
+            placeholder="Product Desc"
+            required=""
+          />
+          <input
+            type="text"
+            name="price"
+            value = "{{product.price}}"
+            placeholder="Product Price"
+            required=""
+          />
+          <input
+            type="text"
+            name="product_stock"
+            value = "{{product.product_stock}}"
+            class="lock"
+            placeholder="Product Stock"
+          />
+          <input type="text" disabled value = "{{product.product_pic}}" placeholder="Product_pic" />
+          <input type="file" accept="image/*" name="product_pic" />
+          <div class="forgot-top-grids">
+            <div class="clearfix"></div>
+          </div>
+          <input type="submit" name="Sign In" value= "{{task}} Product" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--inner block end here-->
+<!--copy rights start here-->
+<div class="copyrights">
+  <p>
+    © 2016 Go-seller. All Rights Reserved | Design by
+    <a href="{% url 'index' %}" target="_blank">Go-Big Store</a>
+  </p>
+</div>
+<!--COPY rights end here-->
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'seller_header.html' %} {% load static %} {% block content %}
+<!--inner block start here-->
+<div class="inner-block" style = "min-height: 500px" >
+  <div class="product-block" >
+    <div class="pro-head">
+      <h2>Products</h2>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Pic</th>
+          <th scope="col">Purchase Date</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in orderlist %}
+        <tr>
+          <td style="width: 25%">{{i.product.product_name}}</td>
+          <td style="width: 15%">
+            <img
+              src={{i.product.product_pic.url}}
+              style="width: 15%"
+              alt="product_pic"
+            />
+          </td>
+          <td style="width: 10%">{{i.date}}</td>
+          <td style="width: 10%">{{i.quantity}}</td>
+          <td style="width: 10%">{{i.get_status_display}}</td>
+         
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!--inner block end here-->
+<!--copy rights start here-->
+<div class="copyrights">
+	<p>
+		© 2016 Go-seller. All Rights Reserved | Design by
+		<a href="{% url 'index' %}" target="_blank">Go-Big Store</a>
+	</p>
+</div>
+<!--COPY rights end here-->
+{% endblock %}
